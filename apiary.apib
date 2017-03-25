@@ -1,41 +1,43 @@
 FORMAT: 1A
-HOST: http://beer.apiblueprint.org/
+HOST: http://oraclearena.apiblueprint.org/
 
 # Oracle Arena Beer API
 
-Beer API asks questions about what type of beer you like.
+Oracle Arena is a simple API allowing allowing to the Beer providers in Oracle 
 
-## Questions Collection [/questions]
+## Questions Collection [/beers]
 
 ### List All Questions [GET]
+
+We list all questions and votes for a particular beer.
 
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favorite Beer?",
+                "question": "What are your favorite beers",
                 "published_at": "2015-08-05T08:40:51.620Z",
                 "choices": [
                     {
-                        "choice": "Budweiser",
+                        "choice": "Blatz",
                         "votes": 2048
                     }, {
-                        "choice": "Cape May IPA",
+                        "choice": "Miller",
                         "votes": 1024
                     }, {
-                        "choice": "Miller",
+                        "choice": "Schlitz",
                         "votes": 512
                     }, {
-                        "choice": "Grosch",
+                        "choice": "Old Milwaukee",
                         "votes": 256
                     }
                 ]
             }
         ]
 
-### Create a New Question [POST]
+### Create a New Question about Beer  [POST]
 
-You may create your own question using this action. It takes a JSON
+You may create your own question about beer using this action. It takes a JSON
 object containing a question and a collection of answers in the
 form of choices.
 
@@ -44,10 +46,10 @@ form of choices.
         {
             "question": "Favourite programming language?",
             "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
+                "Blatz",
+                "Miller",
+                "Schlitz",
+                "Old Milwaukee"
             ]
         }
 
@@ -60,21 +62,38 @@ form of choices.
     + Body
 
             {
-                "question": "Favourite programming language?",
+                "question": "What is your favoite beer?",
                 "published_at": "2015-08-05T08:40:51.620Z",
                 "choices": [
                     {
-                        "choice": "Swift",
+                        "choice": "Blatz",
                         "votes": 0
                     }, {
-                        "choice": "Python",
+                        "choice": "Miller",
                         "votes": 0
                     }, {
-                        "choice": "Objective-C",
+                        "choice": "Miller",
                         "votes": 0
                     }, {
-                        "choice": "Ruby",
+                        "choice": "Old Milwaukee",
                         "votes": 0
                     }
                 ]
             }
+
+### Get the votes for a specific beer [GET]
+Returns all vote counts for a specific Beer
+
+
++ Parameters
+    + beer:1000 (number) - Beer number.
+
++ Response 200 (application/json)
+
+        [
+            { 
+                "name": "Blatz",
+                "accountid": "1000",                
+                "votes": "2048",
+            }    
+        ]
