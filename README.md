@@ -1,1 +1,2 @@
+# Seat Section API
 # beerapi
